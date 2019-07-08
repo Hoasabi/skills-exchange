@@ -10,6 +10,7 @@ class Menu:
             "2": self.show_user,
             "3": self.quit
             }
+            
 
     def create_user(self):
         name = input("Please input your name: ")
@@ -42,7 +43,7 @@ class Menu:
         2. Show user
         3. Quit
         """)
-    
+
 
     def run(self):
         while True:
