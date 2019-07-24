@@ -1,6 +1,76 @@
 import datetime
 
-user_id = 0
+post_id = 0
+
+class Post:
+
+    def __init__(self,headline,content):
+        self.headline = headline
+        self.content = content
+        global post_id
+        post_id += 1
+        self.id = post_id
+        self.datetime = datetime.datetime.now()
+
+
+member_id = 0
+
+class Member:
+
+    def __init__(self, name='', password='',**kwargs):
+        super().__init__(**kwargs)
+        global member_id
+        member_id += 1
+        self.id = member_id
+        self.name = name
+        self.password = password
+
+    def log_in(self):
+        while True:
+            name = input("Name: ")
+            password = input("Password: ")
+            if ((name == self.name) and (password == self.password)):
+                print("Welcome to SE")
+                break
+
+    def search_post(self):
+        search = input('What do you wanna find?')
+        for x in self.post:
+            if search in x:
+                print (x)
+
+class Admin(Member):
+    def __init__(self,name,password):
+        super().__init__(name,password)
+        self.post=[]
+
+    def create_post(self):
+        headline = input("Please create a headline: ")
+        content = input ("Please input the content: ")
+        self.post.append(Post(headline,content))
+        return self.post
+
+
+
+
+class User(Member):
+    def __init__(self,name,password):
+        super().__init__(name,password)
+
+
+
+
+# userQuy = User('quy', '1234')
+# print(userQuy.id)
+# userQuy.log_in()
+
+
+
+
+
+
+
+
 
 class User:
 
@@ -66,15 +136,12 @@ class User:
 
 # post_id = 0
 #
-class Post:
 
-    def __init__(self,healine,content):
-        self.headline = headline
-        self.content = content
-        global post_id
-        post_id += 1
-        self.id = post_id
-        self.datetime = datetime.datetime.now()
+
+
+userHoa = Admin('hoa','123')
+print(userHoa.id)
+userHoa.create_post()
 
 # first_post = post('How to navigate the world')
 # second_post = post('How design makes you happy')
