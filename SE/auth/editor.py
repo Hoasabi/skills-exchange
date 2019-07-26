@@ -9,11 +9,26 @@ class Editor:
     def __init__(self):
         self.username = None
         self.menu_map = {
+        "adduser": self.add_user,
         "login": self.login,
+        "addpermission": self.add_permission,
+        "permituser": self.permit_user,
         "test": self.test,
         "change": self.change,
         "quit": self.quit
         }
+
+    def add_user(self):
+        username = input("username: ")
+        password = input("password: ")
+        try:
+            auth.authenticator.add_user(username,password)
+        except auth.UsernameAlreadyExist:
+            print("The name existed already")
+        except auth.PasswordTooShort:
+            print("Password is too short")
+        # else:
+        #     auth.authenticator.users.update(add_user)
 
     def login(self):
         logged_in = False
@@ -28,6 +43,25 @@ class Editor:
                 print("Sorry, incorrect password")
             else:
                 self.username = username
+
+    def add_permission(self):
+        perm_name = input("Permission: ")
+        try:
+            auth.authorizor.add_permission(perm_name)
+        except auth.PermissionError:
+            print("Please enter a new one, your permission already existed")
+        else:
+            return True
+
+    def permit_user(self):
+        perm_name = input("Permission: ")
+        username = input("Belong to: ")
+        try:
+            auth.authorizor.permit_user(perm_name,username)
+        except auth.PermissionError:
+            print("Permission does not exist")
+        except auth.InvalidUsername:
+            print("No such username")
 
     def is_permitted(self,permission):
         try:
@@ -58,7 +92,10 @@ class Editor:
             while True:
                 print("""
     Please enter a command:
+    \tadd\tuser\tAdd User
     \tlogin\tLogin
+    \taddpermission\tAdd Permission
+    \tpermituser\tPermit User
     \ttest\tTest the program
     \tchange\tChange the program
     \tquit\tQuit
