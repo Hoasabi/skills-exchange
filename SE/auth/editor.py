@@ -92,13 +92,13 @@ class Editor:
             while True:
                 print("""
     Please enter a command:
-    \tadd\tuser\tAdd User
-    \tlogin\tLogin
-    \taddpermission\tAdd Permission
-    \tpermituser\tPermit User
-    \ttest\tTest the program
-    \tchange\tChange the program
-    \tquit\tQuit
+    \tadduser\t\t\tAdd User
+    \tlogin\t\t\tLogin
+    \taddpermission\t\tAdd Permission
+    \tpermituser\t\tPermit User
+    \ttest\t\t\tTest the program
+    \tchange\t\t\tChange the program
+    \tquit\t\t\tQuit
     """)
                 answer = input("enter a command: ").lower()
                 try:

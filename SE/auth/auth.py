@@ -1,58 +1,4 @@
-class EvenOnly(list):
-    def append(self, integer):
-        # if not isinstance(integer, int):
-        #     raise TypeError("Only integers can be added")
-        # if integer % 2:
-        #     raise ValueError("Only even numbers can be added")
-        super().append(integer)
-# e = EvenOnly()
-# e.append(103)
-# print(e)
-# e1 = []
-# e1.append(123)
-# print(e1)
-
-def funny_division3(anumber):
-    try:
-        if anumber == 13:
-            raise ValueError("13 is an unlucky number")
-        return 100 / anumber
-    except ZeroDivisionError:
-        return "Enter a number other than zero"
-    except TypeError:
-        return "Enter a numerical value"
-    except ValueError:
-        print('No 13')
-        raise
-# funny_division3(13)
-
-# try:
-#     raise ValueError("This is an argument")
-# except ValueError as e:
-#     print("The exception arguments were", e.args)
-
-
-# import random
-#
-#
-# some_exceptions = [ValueError, TypeError, IndexError, None]
-# try:
-#     choice = random.choice(some_exceptions)
-#     print("raising {}".format(choice))
-#     if choice:
-#         raise choice("An error")
-# except ValueError:
-#     print("Caught a ValueError")
-# except TypeError:
-#     print("Caught a TypeError")
-# except Exception as e:
-#     print("Caught some other error: {}".format(e.__class__.__name__))
-# else:
-#     print("This code called if there is no exception")
-# finally:
-#     print("This cleanup code is always called")
-
-###############Case study chap4############
+# Library for basic authentication, authorization
 import hashlib
 
 class User:
@@ -69,12 +15,6 @@ class User:
     def check_password(self,password):
         encrypted = self._encrypted_pw(password)
         return encrypted == self.password
-
-# hoa = User("hoa",'12345')
-# print(hoa.password)
-# print(hoa.check_password('2345'))
-
-
 
 class Authenticator():
     def __init__(self):
@@ -104,11 +44,6 @@ class Authenticator():
         if username in self.users:
             return self.users[username].is_logged_in
         return False
-# hoa = User("hoa",'12345')
-
-# # auth.add_user("hoa","ahdbeelg")
-# auth.login("hoang",'123456789')
-# auth.login("hoa",'1234kfht')
 
 class Authorizor:
     def __init__(self,authenticator):
@@ -173,38 +108,5 @@ class NotPermittedError(AuthException):
 class PermissionError(Exception):
     pass
 
-
-
 authenticator = Authenticator()
 authorizor = Authorizor (authenticator)
-
-# auto = Authorizor(authenticator)
-# # auto.add_permission('activity1')
-# auto.authenticator.add_user("hoa","hoapassword")
-# auto.authenticator.add_user("quy","quypassword")
-# # print(auto.authenticator.users)
-#
-# # auto.authenticator.add_user('hoa','hoapassword')
-#
-# # auto.authorizor.add_permission('paint')
-# # auto.authorizor.check_permission('paint',"hoa")
-# # print('aaaaaaaaa')
-#
-# # ########################PHAN TEST NGAY 25/7
-# auto.authenticator.login('hoa','hoapassword')
-# auto.authenticator.is_logged_in("hoa")
-# auto.add_permission('paint')
-# print(auto.permissions)
-# # auto.check_permission('paint','hoa')
-# auto.permit_user('paint','hoa')
-# auto.check_permission('paint','hoa') #chua check duoc not permitted error
-# ########################
-
-
-# print(auto.perm_set)
-# print(auto.permissions)
-# auto.add_permission('activity1')
-# print(auto.permissions)
-# auto.permit_user('activity1','hoa')
-# auto.permit_user('activity2','hoa')
-# print(auto.permissions)
