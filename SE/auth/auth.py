@@ -176,28 +176,28 @@ class PermissionError(Exception):
 
 
 authenticator = Authenticator()
-# authorizor = Authorizor (authenticator)
+authorizor = Authorizor (authenticator)
 
-auto = Authorizor(authenticator)
-# auto.add_permission('activity1')
-auto.authenticator.add_user("hoa","hoapassword")
-auto.authenticator.add_user("quy","quypassword")
-# print(auto.authenticator.users)
-
-# auto.authenticator.add_user('hoa','hoapassword')
-
-# auto.authorizor.add_permission('paint')
-# auto.authorizor.check_permission('paint',"hoa")
-# print('aaaaaaaaa')
-
-# ########################PHAN TEST NGAY 25/7
-auto.authenticator.login('hoa','hoapassword')
-auto.authenticator.is_logged_in("hoa")
-auto.add_permission('paint')
-print(auto.permissions)
-# auto.check_permission('paint','hoa')
-auto.permit_user('paint','hoa')
-auto.check_permission('paint','hoa') #chua check duoc not permitted error
+# auto = Authorizor(authenticator)
+# # auto.add_permission('activity1')
+# auto.authenticator.add_user("hoa","hoapassword")
+# auto.authenticator.add_user("quy","quypassword")
+# # print(auto.authenticator.users)
+#
+# # auto.authenticator.add_user('hoa','hoapassword')
+#
+# # auto.authorizor.add_permission('paint')
+# # auto.authorizor.check_permission('paint',"hoa")
+# # print('aaaaaaaaa')
+#
+# # ########################PHAN TEST NGAY 25/7
+# auto.authenticator.login('hoa','hoapassword')
+# auto.authenticator.is_logged_in("hoa")
+# auto.add_permission('paint')
+# print(auto.permissions)
+# # auto.check_permission('paint','hoa')
+# auto.permit_user('paint','hoa')
+# auto.check_permission('paint','hoa') #chua check duoc not permitted error
 # ########################
 
 
@@ -208,8 +208,3 @@ auto.check_permission('paint','hoa') #chua check duoc not permitted error
 # auto.permit_user('activity1','hoa')
 # auto.permit_user('activity2','hoa')
 # print(auto.permissions)
-
-class Editor:
-    def __init__(self):
-        self.username = None
-        self.menu_map
