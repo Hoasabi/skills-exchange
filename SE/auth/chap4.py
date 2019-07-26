@@ -70,29 +70,13 @@ class User:
         encrypted = self._encrypted_pw(password)
         return encrypted == self.password
 
-hoa = User("hoa",'12345')
+# hoa = User("hoa",'12345')
 # print(hoa.password)
 # print(hoa.check_password('2345'))
 
-class AuthException(Exception):
-    def __init__(self,username, user = None):
-        super().__init__(username, user)
-        self.username = username
-        self.user = user
 
-class UsernameAlreadyExist(AuthException):
-    pass
 
-class PasswordTooShort(AuthException):
-    pass
-
-class InvalidUsername(AuthException):
-    pass
-
-class InvalidPassword(AuthException):
-    pass
-
-class Authenticator:
+class Authenticator():
     def __init__(self):
         self.users = {}
 
@@ -125,10 +109,6 @@ class Authenticator:
 # # auth.add_user("hoa","ahdbeelg")
 # auth.login("hoang",'123456789')
 # auth.login("hoa",'1234kfht')
-
-
-
-authenticator = Authenticator()
 
 class Authorizor:
     def __init__(self,authenticator):
@@ -166,7 +146,22 @@ class Authorizor:
             else:
                 return True
 
-class PermissionError(Exception):
+class AuthException(Exception):
+    def __init__(self,username, user = None):
+        super().__init__(username, user)
+        self.username = username
+        self.user = user
+
+class UsernameAlreadyExist(AuthException):
+    pass
+
+class PasswordTooShort(AuthException):
+    pass
+
+class InvalidUsername(AuthException):
+    pass
+
+class InvalidPassword(AuthException):
     pass
 
 class NotLogginError(AuthException):
@@ -175,14 +170,46 @@ class NotLogginError(AuthException):
 class NotPermittedError(AuthException):
     pass
 
-authorizor = Authenticator (authenticator)
+class PermissionError(Exception):
+    pass
+
+
+
+authenticator = Authenticator()
+# authorizor = Authorizor (authenticator)
 
 auto = Authorizor(authenticator)
-auto.add_permission('activity1')
-auto.authenticator.add_user("hoa",'123456789')
+# auto.add_permission('activity1')
+auto.authenticator.add_user("hoa","hoapassword")
+auto.authenticator.add_user("quy","quypassword")
+# print(auto.authenticator.users)
+
+# auto.authenticator.add_user('hoa','hoapassword')
+
+# auto.authorizor.add_permission('paint')
+# auto.authorizor.check_permission('paint',"hoa")
+# print('aaaaaaaaa')
+
+# ########################PHAN TEST NGAY 25/7
+auto.authenticator.login('hoa','hoapassword')
+auto.authenticator.is_logged_in("hoa")
+auto.add_permission('paint')
+print(auto.permissions)
+# auto.check_permission('paint','hoa')
+auto.permit_user('paint','hoa')
+auto.check_permission('paint','hoa') #chua check duoc not permitted error
+# ########################
+
+
+# print(auto.perm_set)
 # print(auto.permissions)
 # auto.add_permission('activity1')
 # print(auto.permissions)
-auto.permit_user('activity1','hoa')
-auto.permit_user('activity2','hoa')
-print(auto.permissions)
+# auto.permit_user('activity1','hoa')
+# auto.permit_user('activity2','hoa')
+# print(auto.permissions)
+
+class Editor:
+    def __init__(self):
+        self.username = None
+        self.menu_map
